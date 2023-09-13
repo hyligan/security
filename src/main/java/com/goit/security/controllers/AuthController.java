@@ -14,7 +14,7 @@ import java.util.Map;
 @RequestMapping("/api")
 public class AuthController {
   @GetMapping("/userInfo")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @PreAuthorize("hasRole({'ROLE_USER','ROLE_ADMIN'})")
   public @ResponseBody Map<String,String> getUserInfo(@AuthenticationPrincipal UserDetails userDetails){
    return Map.of("userName", userDetails.getUsername()); 
   }

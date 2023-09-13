@@ -1,10 +1,11 @@
 package com.goit.security.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
   public Long getId() {
     return id;
   }
@@ -54,5 +55,32 @@ public class User {
   private String password;
   private String role;
   private Boolean enabled;
+  private String email;
+  private String name;
   
+  private String googleId;
+
+  public String getGoogleId() {
+    return googleId;
+  }
+
+  public void setGoogleId(String googleId) {
+    this.googleId = googleId;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }
