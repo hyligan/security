@@ -40,13 +40,14 @@ public class WebSecConfig {
                 .requestMatchers("/user/**").permitAll()
                 .anyRequest().authenticated()
         )
+        .oauth2Login(oauth2Login -> oauth2Login
+            .loginPage("/login")
+            .userInfoEndpoint(userInfo -> userInfo.oidcUserService(customOidcUserService))
+        )
         .formLogin(form -> form
             .loginPage("/login")
             .permitAll())
-        .logout(LogoutConfigurer::permitAll)
-        .oauth2Login(oauth2Login -> oauth2Login
-            .userInfoEndpoint(userInfo -> userInfo.oidcUserService(customOidcUserService))
-        );
+        .logout(LogoutConfigurer::permitAll);
 
     return http.build();
   }
